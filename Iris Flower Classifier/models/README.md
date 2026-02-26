@@ -1,83 +1,189 @@
-Iris Flower Species Classifier This project provides a comprehensive, end-to-end Machine Learning solution for classifying iris flowers. It is structured to showcase a complete MLOps-lite pipeline, integrating model training, API deployment, and frontend integration.
+# 🌸 Iris Flower Species Classifier
 
-Project Objectives Classification: Accurately classify iris flowers into one of three species (Setosa, Versicolor, or Virginica).
+An end-to-end Machine Learning project that classifies iris flowers into three species using a production-style architecture.  
+This project demonstrates an **MLOps-lite pipeline**, integrating model training, API deployment, and frontend interaction.
 
-**Workflow Demonstration: **Illustrate best practices for separating machine learning logic (backend) from user interaction (frontend).
+---
 
-Technology Stack: Integrate standard professional tools including Scikit-learn, Flask, and Streamlit.
+## 📌 Project Overview
 
-Project Structure The repository is organized to maintain clear separation of concerns for clarity and scalability.
+This application:
 
-The key files and directories are:
+- Trains a Machine Learning model using the Iris dataset
+- Exposes the trained model through a REST API
+- Provides an interactive web interface for real-time predictions
+- Demonstrates separation of ML logic, backend API, and frontend UI
 
-iris-classifier/ ├── src/ │ ├── init.py # Python package marker. │ ├── model_trainer.py # Script for data ingestion, training, and model serialization. │ ├── prediction_api.py # Flask application to serve real-time predictions. │ └── web_app.py # Streamlit application for the user interface. ├── models/ # Directory to store model artifacts. │ ├── iris_knn_model.pkl # Trained model object (K-Nearest Neighbors). │ └── iris_target_names.pkl # Mapping of numerical labels to species names. ├── README.md # Project documentation. ├── requirements.txt # List of Python dependencies. └── run_project.sh # Optional BASH script for automated setup and execution.
+---
 
-Technology Stack Summary The project utilizes the following core components:
+## 🛠️ Technology Stack
 
-Scikit-learn is used for the Machine Learning (training the model).
+- Scikit-learn – Machine Learning
+- Joblib – Model serialization
+- Flask – Backend API
+- Streamlit – Frontend UI
+- Python 3.x
 
-Joblib is used for Model Persistence (saving the trained model).
+---
 
-Flask serves as the Backend API (creating the prediction endpoint).
+## 📂 Project Structure
 
-**Streamlit **builds the Frontend UI (providing the interactive interface).
+```bash
+iris-classifier/
+├── src/
+│   ├── __init__.py
+│   ├── model_trainer.py
+│   ├── prediction_api.py
+│   └── web_app.py
+├── models/
+│   ├── iris_knn_model.pkl
+│   └── iris_target_names.pkl
+├── README.md
+├── requirements.txt
+└── run_project.sh
+```
 
-Getting Started 1. Prerequisites Ensure you have Python 3.x and the package manager pip installed.
+---
 
-2. Setup and Installation Execute the following commands from the root iris-classifier directory:
+## 🚀 Getting Started
+
+### 1️⃣ Prerequisites
+
+Make sure you have:
+
+- Python 3.x
+- pip installed
+
+---
+
+### 2️⃣ Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/your-username/iris-classifier.git
+cd iris-classifier
+```
 
 Install dependencies:
 
-Bash
+```bash
+pip install -r requirements.txt
+```
 
-pip install -r requirements.txt Create the necessary models directory:
+Create the models directory:
 
-Bash
-
+```bash
 mkdir models
+```
 
-3. Execution (Simultaneous Operation) The application requires three sequential steps, with the API and UI running concurrently. Use three separate terminal windows or a split terminal feature for execution.
+---
 
-Step A: Model Training This step trains the K-Nearest Neighbors model on the embedded Iris dataset and saves the necessary files.
+## ▶️ Running the Application
 
-In Terminal 1:
+You will need **three terminals**.
 
-Bash
+---
 
+### 🔹 Step 1: Train the Model
+
+```bash
 python src/model_trainer.py
+```
 
-Step B: Start the Prediction API (Backend) The Flask server is started to host the model and listen for prediction requests on Port 5000.
+This will:
+- Train the KNN model
+- Save model artifacts in the `models/` directory
 
-In Terminal 2:
+---
 
-Bash
+### 🔹 Step 2: Start the Backend API
 
-python src/prediction_api.py Keep this terminal session active to keep the server running.
+```bash
+python src/prediction_api.py
+```
 
-Step C: Launch the Web UI (Frontend) The Streamlit interface is launched. It acts as the client that sends data to the running Flask API.
+The Flask server will start on:
 
-In Terminal 3:
+```
+http://127.0.0.1:5000
+```
 
-Bash
+Keep this terminal running.
 
-streamlit run src/web_app.py The application will launch in your default web browser, allowing you to use the interface to interact with the model in real-time.
+---
 
-Model Details Dataset The model is trained on the classic Iris Dataset, which includes 150 samples from the three Iris species.
+### 🔹 Step 3: Launch the Frontend
 
-Algorithm The K-Nearest Neighbors (KNN) algorithm is employed for classification, configured with K=3. This algorithm is simple yet highly effective for this particular dataset, classifying a new flower based on the majority species among its three closest data points.
+```bash
+streamlit run src/web_app.py
+```
 
-Input Features The model uses the following four features for classification:
+The Streamlit app will open in your browser and connect to the Flask API.
 
-Sepal Length (cm)
+---
 
-Sepal Width (cm)
+## 🤖 Model Information
 
-Petal Length (cm)
+### Dataset
 
-Petal Width (cm)
+- 150 samples
+- 3 species:
+  - Setosa
+  - Versicolor
+  - Virginica
 
-Cleanup To properly shut down the application:
+### Algorithm
 
-Close the web browser window running the Streamlit application (Terminal 3).
+- K-Nearest Neighbors (K=3)
 
-Return to Terminal 2 (running the Flask API) and press Ctrl + C to terminate the server process.
+### Input Features
+
+- Sepal Length (cm)
+- Sepal Width (cm)
+- Petal Length (cm)
+- Petal Width (cm)
+
+---
+
+## 🧪 Example API Request (Optional)
+
+You can test the API using curl:
+
+```bash
+curl -X POST http://127.0.0.1:5000/predict \
+-H "Content-Type: application/json" \
+-d '{"features":[5.1,3.5,1.4,0.2]}'
+```
+
+---
+
+## 🛑 Stopping the Application
+
+- Close the Streamlit browser tab
+- Press `Ctrl + C` in the Flask terminal
+
+---
+
+## 🎯 Project Purpose
+
+This project demonstrates:
+
+- Clean ML pipeline structure
+- API deployment principles
+- Frontend-backend communication
+- Real-time model inference
+- Production-style folder organization
+
+---
+
+## 📜 License
+
+This project is licensed under the MIT License.
+
+---
+
+## 👤 Author
+
+Your Name  
+GitHub: https://github.com/your-username
