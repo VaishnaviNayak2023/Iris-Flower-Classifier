@@ -1,143 +1,189 @@
-🌸 Iris Flower Species Classifier
+# 🌸 Iris Flower Species Classifier
 
-An end-to-end Machine Learning project that classifies iris flowers into three species using a production-style architecture. This project demonstrates an MLOps-lite pipeline, integrating model training, API deployment, and frontend interaction in a cleanly structured and scalable way.
+An end-to-end Machine Learning project that classifies iris flowers into three species using a production-style architecture.  
+This project demonstrates an **MLOps-lite pipeline**, integrating model training, API deployment, and frontend interaction.
 
-📌 Project Objectives
+---
 
-Classification: Accurately predict iris flower species — Setosa, Versicolor, or Virginica.
+## 📌 Project Overview
 
-Architecture Best Practices: Maintain separation between:
+This application:
 
-Machine Learning logic (training & inference)
+- Trains a Machine Learning model using the Iris dataset
+- Exposes the trained model through a REST API
+- Provides an interactive web interface for real-time predictions
+- Demonstrates separation of ML logic, backend API, and frontend UI
 
-Backend API layer
+---
 
-Frontend user interface
+## 🛠️ Technology Stack
 
-Professional Tooling: Use industry-standard Python tools for real-world workflow simulation.
+- Scikit-learn – Machine Learning
+- Joblib – Model serialization
+- Flask – Backend API
+- Streamlit – Frontend UI
+- Python 3.x
 
-🛠️ Technology Stack
+---
 
-Machine Learning: Scikit-learn
+## 📂 Project Structure
 
-Model Persistence: Joblib
-
-Backend API: Flask
-
-Frontend UI: Streamlit
-
-📂 Project Structure
+```bash
 iris-classifier/
 ├── src/
-│   ├── __init__.py              # Python package marker
-│   ├── model_trainer.py         # Data ingestion, training & serialization
-│   ├── prediction_api.py        # Flask API for real-time predictions
-│   └── web_app.py               # Streamlit frontend interface
+│   ├── __init__.py
+│   ├── model_trainer.py
+│   ├── prediction_api.py
+│   └── web_app.py
 ├── models/
-│   ├── iris_knn_model.pkl       # Serialized trained model
-│   └── iris_target_names.pkl    # Label-to-species mapping
-├── README.md                    # Project documentation
-├── requirements.txt             # Python dependencies
-└── run_project.sh               # Optional automation script
+│   ├── iris_knn_model.pkl
+│   └── iris_target_names.pkl
+├── README.md
+├── requirements.txt
+└── run_project.sh
+```
 
-The structure ensures clean separation of concerns, making the project scalable and production-ready.
+---
 
-🚀 Getting Started
-1️⃣ Prerequisites
+## 🚀 Getting Started
 
-Python 3.x
+### 1️⃣ Prerequisites
 
-pip package manager
+Make sure you have:
 
-2️⃣ Setup & Installation
+- Python 3.x
+- pip installed
 
-From the project root directory:
+---
 
+### 2️⃣ Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/your-username/iris-classifier.git
+cd iris-classifier
+```
+
+Install dependencies:
+
+```bash
 pip install -r requirements.txt
+```
+
+Create the models directory:
+
+```bash
 mkdir models
-3️⃣ Execution Workflow
+```
 
-The application requires three steps. Run each in a separate terminal window.
+---
 
-🔹 Step A: Train the Model
+## ▶️ Running the Application
 
-Trains the K-Nearest Neighbors model and saves artifacts.
+You will need **three terminals**.
 
+---
+
+### 🔹 Step 1: Train the Model
+
+```bash
 python src/model_trainer.py
-🔹 Step B: Start the Backend API
+```
 
-Launches the Flask server on Port 5000.
+This will:
+- Train the KNN model
+- Save model artifacts in the `models/` directory
 
+---
+
+### 🔹 Step 2: Start the Backend API
+
+```bash
 python src/prediction_api.py
+```
+
+The Flask server will start on:
+
+```
+http://127.0.0.1:5000
+```
 
 Keep this terminal running.
 
-🔹 Step C: Launch the Frontend UI
+---
 
-Starts the Streamlit interface.
+### 🔹 Step 3: Launch the Frontend
 
+```bash
 streamlit run src/web_app.py
+```
 
-The web app will open in your browser and communicate with the running API in real time.
+The Streamlit app will open in your browser and connect to the Flask API.
 
-🤖 Model Details
-📊 Dataset
+---
 
-The model is trained on the classic Iris dataset containing 150 samples across three species:
+## 🤖 Model Information
 
-Iris Setosa
+### Dataset
 
-Iris Versicolor
+- 150 samples
+- 3 species:
+  - Setosa
+  - Versicolor
+  - Virginica
 
-Iris Virginica
+### Algorithm
 
-🧠 Algorithm
+- K-Nearest Neighbors (K=3)
 
-The classifier uses the K-Nearest Neighbors (KNN) algorithm with:
+### Input Features
 
-K = 3
+- Sepal Length (cm)
+- Sepal Width (cm)
+- Petal Length (cm)
+- Petal Width (cm)
 
-KNN predicts a flower’s species based on the majority class among its three closest neighbors in feature space.
+---
 
-📥 Input Features
+## 🧪 Example API Request (Optional)
 
-The model uses four numerical features:
+You can test the API using curl:
 
-Sepal Length (cm)
+```bash
+curl -X POST http://127.0.0.1:5000/predict \
+-H "Content-Type: application/json" \
+-d '{"features":[5.1,3.5,1.4,0.2]}'
+```
 
-Sepal Width (cm)
+---
 
-Petal Length (cm)
+## 🛑 Stopping the Application
 
-Petal Width (cm)
+- Close the Streamlit browser tab
+- Press `Ctrl + C` in the Flask terminal
 
-🛑 Shutting Down
+---
 
-To properly stop the application:
+## 🎯 Project Purpose
 
-Close the Streamlit browser tab.
+This project demonstrates:
 
-In the Flask API terminal, press:
+- Clean ML pipeline structure
+- API deployment principles
+- Frontend-backend communication
+- Real-time model inference
+- Production-style folder organization
 
-Ctrl + C
-🎯 Key Highlights
+---
 
-Clean ML → API → UI separation
+## 📜 License
 
-Real-time prediction workflow
+This project is licensed under the MIT License.
 
-Model serialization & deployment simulation
+---
 
-Scalable project structure
+## 👤 Author
 
-Beginner-friendly yet industry-aligned
-
-📌 Ideal For
-
-Machine Learning portfolio projects
-
-Demonstrating backend + frontend ML integration
-
-Learning deployment fundamentals
-
-Showcasing production-style Python architecture
+Your Name  
+GitHub: https://github.com/your-username
